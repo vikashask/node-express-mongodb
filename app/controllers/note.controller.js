@@ -17,3 +17,15 @@ exports.create = function(req, res) {
         }
     });
 };
+
+exports.findAll = function(req, res) {
+    // Retrieve and return all notes from the database.
+    Note.find(function(err, notes){
+        if(err) {
+            console.log(err);
+            res.status(500).send({message: "Some error occurred while retrieving notes."});
+        } else {
+            res.send(notes);
+        }
+    });
+};
