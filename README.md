@@ -18,5 +18,5 @@ npm install express body-parser mongoose --save
   Let’s now run the server and go to http://localhost:3000 to access the route we just defined.
   Server is listening on port 3000
   
-  terminal message 
+5. terminal message 
   Successfully connected to the database
