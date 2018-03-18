@@ -48,3 +48,32 @@ exports.findOne = function(req, res) {
         res.send(note);
     });
 };
+
+exports.update = function(req, res) {
+    // Update a note identified by the noteId in the request
+    Note.findById(req.params.noteId, function(err, note) {
+        if(err) {
+            console.log(err);
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({message: "Note not found with id " + req.params.noteId});                
+            }
+            return res.status(500).send({message: "Error finding note with id " + req.params.noteId});
+        }
+
+        if(!note) {
+            return res.status(404).send({message: "Note not found with id " + req.params.noteId});            
+        }
+
+        note.title = req.body.title;
+        note.content = req.body.content;
+
+        note.save(function(err, data){
+            if(err) {
+                res.status(500).send({message: "Could not update note with id " + req.params.noteId});
+            } else {
+                res.send(data);
+            }
+        });
+    });
+};
+
