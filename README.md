@@ -9,3 +9,9 @@ git clone 'repository url'
 
 2. Install dependenies
 npm install express body-parser mongoose --save
+
+3. Start webserver
+  node server.js or
+  nodemon server.js (if nodemon installed)
+  
+  Server is listening on port 3000
