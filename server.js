@@ -29,6 +29,9 @@ mongoose.connection.once('open', function() {
     console.log("Successfully connected to the database");
 })
 
+// Require Notes routes
+require('./app/routes/note.routes.js')(app);
+
 // define a simple route
 app.get('/', function(req, res){
     res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
