@@ -4,7 +4,7 @@ Restful CRUD API with Node.js, Express and MongoDB
 
 Steps to create application 
 
-1.git clone this repository 
+1. git clone this repository 
 git clone 'repository url'
 
 2. Install dependenies
