@@ -29,3 +29,22 @@ exports.findAll = function(req, res) {
         }
     });
 };
+
+exports.findOne = function(req, res) {
+    // Find a single note with a noteId
+    Note.findById(req.params.noteId, function(err, note) {
+        if(err) {
+            console.log(err);
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({message: "Note not found with id " + req.params.noteId});                
+            }
+            return res.status(500).send({message: "Error retrieving note with id " + req.params.noteId});
+        } 
+
+        if(!note) {
+            return res.status(404).send({message: "Note not found with id " + req.params.noteId});            
+        }
+
+        res.send(note);
+    });
+};
