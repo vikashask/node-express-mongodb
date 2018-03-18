@@ -77,3 +77,23 @@ exports.update = function(req, res) {
     });
 };
 
+exports.delete = function(req, res) {
+    // Delete a note with the specified noteId in the request
+    Note.findByIdAndRemove(req.params.noteId, function(err, note) {
+        if(err) {
+            console.log(err);
+            if(err.kind === 'ObjectId') {
+                return res.status(404).send({message: "Note not found with id " + req.params.noteId});                
+            }
+            return res.status(500).send({message: "Could not delete note with id " + req.params.noteId});
+        }
+
+        if(!note) {
+            return res.status(404).send({message: "Note not found with id " + req.params.noteId});
+        }
+
+        res.send({message: "Note deleted successfully!"})
+    });
+};
+
+
